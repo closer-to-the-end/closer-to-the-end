@@ -1,4 +1,169 @@
-html {
-  height: 100%;
+body {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Times New Roman', serif;
+  color: #c0c0c0;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  max-width: 800px;
+  padding: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.instruction {
+  font-size: 1.4em;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  text-shadow: 0 0 8px rgba(192, 192, 192, 0.3);
+}
+
+.instruction em {
+  color: #00ff00;
+  font-style: normal;
+  text-shadow: 0 0 10px #00ff00;
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+input {
+  padding: 15px 25px;
+  font-size: 1.4em;
+  border: 3px solid #00ff00;
+  background-color: #111;
+  color: #00ff00;
+  border-radius: 8px;
+  outline: none;
+  width: 300px;
+  letter-spacing: 2px;
+}
+
+button {
+  padding: 15px 20px;
+  font-size: 1.3em;
+  background-color: #111;
+  color: #00ff00;
+  border: 3px solid #00ff00;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #00ff00;
+  color: #111;
+}
+
+#message {
+  margin-top: 30px;
+  font-size: 1.3em;
+  min-height: 25px;
+}
+
+.glitch {
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  2% { clip-path: inset(15% 0 30% 0); }
+  4% { clip-path: inset(80% 0 5% 0); }
+  6% { clip-path: inset(25% 0 60% 0); }
+  8% { clip-path: inset(90% 0 1% 0); }
+  50% { clip-path: inset(10% 0 60% 0); }
+  70% { clip-path: inset(80% 0 5% 0); }
+  100% { clip-path: inset(10% 0 60% 0); }
+}
+
+.white-out {
+  animation: whiteOut 2s forwards;
+}
+
+@keyframes whiteOut {
+  0% { background-color: transparent; }
+  100% { background-color: white; }
+}
+
+.final-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 2.5em;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+  animation-delay: 2.5s;
+  text-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.matrix-bg {
+  position: fixed;
+  top: 0;    
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fall {
+  to { top: 100vh; }
+}
+
+.matrix-text {
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  position: absolute;
+  opacity: 0.5;
+  animation: fall 3s linear infinite;
+}
+
+.hex-grid {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="%2300ff0022"/></svg>');
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+.fade-text {
+  animation: fadeText 2s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeText {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes textShadow {
+  0% { text-shadow: 0 0 10px rgba(0,255,0,0.5); }
+  100% { text-shadow: 0 0 20px rgba(0,255,0,0.8), 0 0 30px rgba(0,255,0,0.5); }
 }
