@@ -14,7 +14,7 @@ document.getElementById('submitBtn').addEventListener('click', () => {
         document.getElementById('inputField').disabled = true;
         document.getElementById('submitBtn').disabled = true;
 
-        const dots = [".", "..", "..."];
+        const dots = ["...", "..", "."];
         let count = 0;
 
         const dotInterval = setInterval(() => {

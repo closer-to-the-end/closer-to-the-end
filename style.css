@@ -70,7 +70,7 @@ button:hover {
 #message {
   margin-top: 30px;
   font-size: 1.3em;
-  min-height: 25px;
+  min:: 25px;
 }
 
 .glitch {
@@ -87,13 +87,63 @@ button:hover {
   100% { clip-path: inset(10% 0 60% 0); }
 }
 
-.white-out {
-  animation: whiteOut 2s forwards;
+.white-transition {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
+  transform: translate(-50%, -50%);
+  animation: whiteExpand 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  z-index: 999;
 }
 
-@keyframes whiteOut {
-  0% { background-color: transparent; }
-  100% { background-color: white; }
+@keyframes whiteExpand {
+  0% { width: 0; height: 0; opacity: 1; }
+  100% { width: 400vmax; height: 400vmax;:: 1; }
+}
+
+.white-bg-effect {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+      rgba(255,255,255,1) 0%, 
+      rgba(245,245,245,1) 50%, 
+      rgba(255,255,255,1) 100%
+  );
+  animation: bgPulse 10s infinite alternate;
+}
+
+@keyframes bgPulse {
+  0% { opacity: 0.95; }
+  100% { opacity: 1; }
+}
+
+.float-particle {
+  position: absolute;
+  background: rgba(0,0,0,0.05);
+  border-radius: 50%;
+  animation: float 20s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-100vh) translateX(50vw); }
+  50% { transform: translateY(-50vh) translateX(-50vw); }
+  75% { transform: translateY(-150vh) translateX(-25vw); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+.grid-lines {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.5;
 }
 
 .final-message {
@@ -108,6 +158,7 @@ button:hover {
   animation: fadeIn 2s forwards;
   animation-delay: 2.5s;
   text-shadow: 0 0 10px rgba(0,0,0,0.3);
+  z-index: 1000;
 }
 
 @keyframes fadeIn {
@@ -121,7 +172,7 @@ button:hover {
 
 .matrix-bg {
   position: fixed;
-  top: 0;    
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -161,9 +212,4 @@ button:hover {
 @keyframes fadeText {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes textShadow {
-  0% { text-shadow: 0 0 10px rgba(0,255,0,0.5); }
-  100% { text-shadow: 0 0 20px rgba(0,255,0,0.8), 0 0 30px rgba(0,255,0,0.5); }
 }
